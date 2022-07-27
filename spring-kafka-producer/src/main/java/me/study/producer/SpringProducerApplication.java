@@ -19,7 +19,7 @@ public class SpringProducerApplication implements CommandLineRunner {
 
     private final KafkaTemplate<String, String> template;
 
-    public SpringProducerApplication(@Qualifier("customKafkaTemplate") KafkaTemplate<String, String> template) {
+    public SpringProducerApplication(KafkaTemplate<String, String> template) {
         this.template = template;
     }
 
@@ -35,7 +35,7 @@ public class SpringProducerApplication implements CommandLineRunner {
 //        }
 //        System.exit(0);
 
-        ListenableFuture<SendResult<String, String>> future = template.send(TOPIC_NAME, "test-custom-01");
+        ListenableFuture<SendResult<String, String>> future = template.send(TOPIC_NAME, "test-custom-02");
         future.addCallback(new KafkaSendCallback<>() {
 
             @Override
